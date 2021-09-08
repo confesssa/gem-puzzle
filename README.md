@@ -5,4 +5,4 @@
 <p><strong>Tools: pure HTML and CSS, Vanilla JS, CSS-Flexbox, CSS-Variables, DocumentFragment()</strong> </p>
 <p>You can find the code <a href="https://github.com/confesssa/gem-puzzle">here</a>. Deploy is <a href="https://confesssa.github.io/gem-puzzle/">here</a> or you can click on the image below.</p>
 <a href="https://confesssa.github.io/gem-puzzle/">
-<img src ="./Assets/Gem-puzzle.png"></a>
+<img src ="Assets/Gem-puzzle.png"></a>
