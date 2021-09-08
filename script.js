@@ -89,8 +89,188 @@ total.appendChild(score);
 score.textContent = 'Score: ';
 let count = 0;
 
+// Create box
+let box = document.createElement('div');
+box.classList.add('box');
+gameContainer.appendChild(box);
 
+let emptyElement = {
+  value: 0,
+  top: 0,
+  left: 0,
+}
 
+let elements = [];
+elements.push(emptyElement);
 
+const elementsCount = 15;
+let numbers = [...Array(elementsCount).keys()].sort(() => Math.random() - 0.5);
+
+// Generate box
+const elementWidth = 100;
+  for (let i = 1; i <= elementsCount; i++) { // create 15 elements
+    let el = document.createElement('div');
+    let value = numbers[i - 1] + 1;
+    el.classList.add('element');
+    el.classList.add(`bgImage${value}`);
+
+    let left = i % 4;
+    let top = (i - left) / 4;
+  
+    elements.push({
+      value: value,
+      left: left,
+      top: top,
+      element: el
+    });
+  
+    el.style.left = `${left * elementWidth}px`;
+    el.style.top = `${top * elementWidth}px`;
+  
+    box.appendChild(el);
+  
+    el.addEventListener('click', () => {
+      jump(i);
+    });
+
+    // Create function jump
+  function jump(index) {
+    let el = elements[index];
+  
+    let leftDiff = Math.abs(emptyElement.left - el.left);
+    let topDiff = Math.abs(emptyElement.top - el.top);
+  
+    let hasMoveOnlyOneStem = leftDiff + topDiff;
+    if (hasMoveOnlyOneStem > 1) {
+      return; 
+    }
+  
+    el.element.style.left = `${emptyElement.left * elementWidth}px`;
+    el.element.style.top = `${emptyElement.top * elementWidth}px`;
+
+    count += 1;
+    score.textContent = `Score: ${count}`;
+  
+    let emptyElementLeft = emptyElement.left;
+    let emptyElementTop = emptyElement.top;
+    emptyElement.left = el.left;
+    emptyElement.top = el.top;
+    el.left = emptyElementLeft;
+    el.top = emptyElementTop;
+  
+    let isFinished = elements.every(el => {
+      return el.value === el.top * 4 + el.left;
+    })
+
+    StartStop();
+    moved.play();
+
+    if (isFinished) {
+      won.play();
+      alert(`Ура! Вы решили головоломку за ${readout} и ${count} ходов`);
+      clearTimeout(clocktimer);
+      init = 0;
+      count = 0;
+      score.textContent = `Score: ${count}`;
+    }
+  }
+ }
+
+   // Create function for Timer
+const base = 60;
+let clocktimer, dateObj, displayHours, displayMinutes, displaySeconds;
+let readout = '';
+let hours = 1,
+  minutes = 1,
+  temporaryMinutes = 1,
+  seconds = 0,
+  temporarySeconds = 0,
+  milliseconds = 0,
+  init = 0;
+
+function ClearСlock() {
+  clearTimeout(clocktimer);
+  hours = 1;
+  minutes = 1;
+  temporaryMinutes = 1;
+  seconds = 0;
+  temporarySeconds = 0;
+  milliseconds = 0;
+  init = 0;
+  readout = '00:00:00';
+  document.MyForm.stopwatch.value = readout;
+}
+
+function StartTIME() {
+  const cdateObj = new Date();
+  const TimerTime = (cdateObj.getTime() - dateObj.getTime()) - (seconds * 1000);
+  if (TimerTime > 999) {
+    seconds++;
+  }
+  if (seconds >= (minutes * base)) {
+    temporarySeconds = 0;
+    minutes++;
+  } else {
+    temporarySeconds = parseInt((milliseconds / 100) + seconds);
+    if (temporarySeconds >= base) {
+      temporarySeconds = temporarySeconds - ((minutes - 1) * base);
+    }
+  }
+  if (minutes > (hours * base)) {
+    temporaryMinutes = 1;
+    hours++;
+  } else {
+    temporaryMinutes = parseInt((milliseconds / 100) + minutes);
+    if (temporaryMinutes >= base) {
+      temporaryMinutes = temporaryMinutes - ((hours - 1) * base);
+    }
+  }
+  milliseconds = Math.round(TimerTime / 10);
+  if (milliseconds > 99) {
+    milliseconds = 0;
+  }
+  if (milliseconds == 0) {
+    milliseconds = '00';
+  }
+  if (milliseconds > 0 && milliseconds <= 9) {
+    milliseconds = '0' + milliseconds;
+  }
+  if (temporarySeconds > 0) {
+    displaySeconds = temporarySeconds;
+    if (temporarySeconds < 10) {
+      displaySeconds = '0' + temporarySeconds;
+    }
+  } else {
+    displaySeconds = '00';
+  }
+  displayMinutes = temporaryMinutes - 1;
+  if (displayMinutes > 0) {
+    if (displayMinutes < 10) {
+      displayMinutes = '0' + displayMinutes;
+    }
+  } else {
+    displayMinutes = '00';
+  }
+  displayHours = hours - 1;
+  if (displayHours > 0) {
+    if (displayHours < 10) {
+      displayHours = '0' + displayHours;
+    }
+  } else {
+    displayHours = '00';
+  }
+  readout = displayHours + ':' + displayMinutes + ':' + displaySeconds;
+  document.MyForm.stopwatch.value = readout;
+  clocktimer = setTimeout("StartTIME()", 1);
+}
+
+function StartStop() {
+  if (init == 0) {
+    ClearСlock();
+    dateObj = new Date();
+    StartTIME();
+    init = 1;
+  } 
+}
 
 document.body.append(fragment);
