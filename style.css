@@ -1,0 +1,41 @@
+body {
+  background: yellow;
+  display: flex;
+  justify-content: center;
+}
+
+.general-wrapper {
+  background: green;
+  display: flex;
+  flex-direction: row;
+}
+
+.template-container {
+  background: orange;
+  margin: 15px;
+}
+
+.title {
+  text-align: center;
+}
+
+.image {
+  width: 350px;
+  height: 350px;
+  background: orchid;
+}
+
+.game-container {
+  background: tomato;
+  width: 430px;
+  height: 483px;
+  margin: 15px;
+}
+
+
+@media (max-width: 950px) {
+  .general-wrapper {
+    flex-direction: column-reverse;
+  }
+
+}
