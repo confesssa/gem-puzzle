@@ -1,5 +1,9 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background: yellow;
+  background: rosybrown;
   display: flex;
   justify-content: center;
 }
@@ -11,15 +15,32 @@ body {
 }
 
 .template-container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
   background: orange;
-  margin: 15px;
 }
 
 .template-title {
   text-align: center;
 }
 
+.template-paragraph {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: var(--red-color);
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 700;
+  font-size: 30px;
+  user-select: none;
+}
+
 .template-image {
+  align-self: center;
+  background-color: rosybrown;
+}
+
+.ready-image {
   width: 350px;
   height: 350px;
 }
@@ -28,7 +49,7 @@ body {
   background: tomato;
   width: 430px;
   height: 483px;
-  margin: 15px;
+  margin: 20px;
 }
 
 

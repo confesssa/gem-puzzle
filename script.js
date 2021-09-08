@@ -34,15 +34,19 @@ generalWrapper.appendChild(gameContainer);
 const templateTitle = document.createElement('div');
 templateTitle.classList.add('template-title');
 
-const templateImage = document.createElement('img');
-templateImage.setAttribute('src', './Assets/ready image.png');
+const templateImage = document.createElement('div');
 templateImage.classList.add('template-image');
+
+const readyImage = document.createElement('img');
+readyImage.setAttribute('src', './Assets/ready image.png');
+readyImage.classList.add('ready-image');
+templateImage.appendChild(readyImage);
 
 
 templateContainer.append(templateTitle, templateImage);
 
 const templateParagraph = document.createElement('div');
-// templateTitle.classList.add('template-title');
+templateParagraph.classList.add('template-paragraph');
 templateParagraph.innerHTML = 'How it should be';
 templateTitle.appendChild(templateParagraph);
 
