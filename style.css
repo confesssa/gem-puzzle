@@ -15,14 +15,13 @@ body {
   margin: 15px;
 }
 
-.title {
+.template-title {
   text-align: center;
 }
 
-.image {
+.template-image {
   width: 350px;
   height: 350px;
-  background: orchid;
 }
 
 .game-container {
