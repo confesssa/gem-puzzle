@@ -1,4 +1,13 @@
+/* GENERAL */
+:root {
+  --red-color: #AA3939;
+  --yellow-color: #D4EE9F;
+  --burgundy-color: #420909;
+}
+
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -14,6 +23,8 @@ body {
   flex-direction: row;
 }
 
+
+/* TEMPLATE-CONTAINER */
 .template-container {
   display: flex;
   flex-direction: column;
@@ -45,11 +56,64 @@ body {
   height: 350px;
 }
 
+
+/* GAME-CONTAINER */
 .game-container {
   background: tomato;
   width: 430px;
-  height: 483px;
-  margin: 20px;
+  padding: 15px;
+  background-color: var(--red-color);
+  border-radius: 5px;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 50%);
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  color: var(--yellow-color);
+  font-size: 20px;
+  font-weight: bold;
+  user-select: none;
+}
+
+.reset {
+  width: 80px;
+  padding: 5px;
+  color: var(--burgundy-color);
+  background-color: var(--yellow-color);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+}
+
+.reset:hover {
+  color: #D4EE9F;
+  background-color: var(--burgundy-color);
+}
+
+.time {
+  display: flex;
+  align-items: center;
+  width: 95px;
+  height: 30px;
+}
+
+.input {
+  margin-left: 5px;
+}
+
+.score {
+  display: flex;
+  align-items: center;
+  width: 95px;
+  height: 30px;
 }
 
 
@@ -57,5 +121,4 @@ body {
   .general-wrapper {
     flex-direction: column-reverse;
   }
-
 }
