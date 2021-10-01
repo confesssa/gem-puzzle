@@ -7,5 +7,5 @@
 <p>You can find the code <a href="https://github.com/confesssa/gem-puzzle">here</a>. Deploy is <a href="https://confesssa.github.io/gem-puzzle/">here</a> or you can click on the image below.</p>
 <p align="center">
 <a href="https://confesssa.github.io/gem-puzzle/">
-<img width="75%" src ="./assets/gem-puzzle.jpg"></a>
+<img width="75%" src ="./Assets/Gem-puzzle.jpg"></a>
 </p>
